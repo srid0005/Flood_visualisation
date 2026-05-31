@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Flood Event Frequency by State",
-    "subtitle": "Darker blue = more flood events since 1965. 5 discrete colour levels. Hover for details.",
+    "subtitle": "Darker blue = more flood events since 1965. Hover for state details.",
     "anchor": "start",
     "fontSize": 14,
     "subtitleFontSize": 11,
@@ -12,7 +12,11 @@
     "subtitleColor": "#526070"
   },
   "width": "container",
-  "height": 420,
+  "height": 460,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
   "config": {
     "view": {
       "stroke": "transparent"
@@ -27,29 +31,29 @@
     "type": "mercator"
   },
   "data": {
-    "url": "data/malaysia-states-simplified.json",
+    "url": "data/malaysia_states.topojson",
     "format": {
-      "type": "json",
-      "property": "features"
+      "type": "topojson",
+      "feature": "layer"
     }
   },
   "transform": [
     {
-      "lookup": "properties.shapeName",
+      "lookup": "properties.NAME_1",
       "from": {
         "data": {
           "url": "data/state_freq_map.csv"
         },
         "key": "State",
-        "fields": [
-          "Event_Count",
-          "Total_Affected",
-          "Avg_Affected_per_Event"
-        ]
+        "fields": ["Event_Count", "Total_Affected"]
+      },
+      "default": {
+        "Event_Count": 0,
+        "Total_Affected": 0
       }
     },
     {
-      "calculate": "datum.Event_Count == null ? 0 : +datum.Event_Count",
+      "calculate": "toNumber(datum.Event_Count)",
       "as": "Events"
     }
   ],
@@ -63,31 +67,30 @@
       "field": "Events",
       "type": "quantitative",
       "scale": {
-        "type": "quantize",
-        "domain": [
-          0,
-          20
-        ],
-        "scheme": "blues"
+        "scheme": "blues",
+        "domain": [0, 20]
       },
       "title": "Flood Events",
       "legend": {
-        "orient": "bottom-right",
-        "direction": "vertical",
-        "gradientLength": 120,
-        "format": "d"
+        "orient": "bottom",
+        "direction": "horizontal",
+        "gradientLength": 300,
+        "gradientThickness": 12,
+        "titleAnchor": "middle",
+        "titleOrient": "left",
+        "labelOverlap": true
       }
     },
     "tooltip": [
       {
-        "field": "properties.shapeName",
+        "field": "properties.NAME_1",
         "type": "nominal",
         "title": "State"
       },
       {
         "field": "Events",
         "type": "quantitative",
-        "title": "Events"
+        "title": "Flood Events"
       },
       {
         "field": "Total_Affected",

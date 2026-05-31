@@ -1,147 +1,283 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
   "title": {
-    "text": "Flood Burden Change by State (2000–2014 → 2015–2024)",
-    "subtitle": "Ranked by change in people displaced. Red = worsening, green = improvement.",
-    "anchor": "start",
-    "font": "DM Sans",
-    "fontSize": 14,
-    "subtitleFont": "DM Sans",
-    "subtitleFontSize": 11,
-    "color": "#0d1b2a",
-    "subtitleColor": "#6a8090"
+    "text": "Which States Bore the Greatest Flood Burden — and Did It Change?",
+    "subtitle": "Bold lines = key states. Dashed = average of all other states. Grey band = range.",
+    "anchor": "start", "fontSize": 14, "subtitleFontSize": 11,
+    "font": "DM Sans", "subtitleFont": "DM Sans",
+    "color": "#0d1b2a", "subtitleColor": "#6a8090"
   },
-
   "width": "container",
-  "height": 520,
-
+  "height": 600,
+  "padding": {"left": 140, "right": 160},
   "config": {
-    "view": { "stroke": "transparent" },
+    "view": {"stroke": "transparent"},
     "axis": {
-      "grid": false,
-      "domain": false,
-      "ticks": false,
-      "labelFont": "DM Sans",
-      "titleFont": "DM Sans",
-      "labelFontSize": 12
+      "grid": true, "gridColor": "#f0f4f8", "gridWidth": 1,
+      "domain": false, "ticks": false,
+      "labelFont": "DM Sans", "titleFont": "DM Sans",
+      "labelFontSize": 12, "titleFontSize": 12
     },
-    "legend": { "disable": true }
+    "legend": {"disable": true}
   },
-
   "data": {
     "values": [
-      {"State":"Pahang","Era":"2000–2014","Total_Affected":614239},
-      {"State":"Pahang","Era":"2015–2024","Total_Affected":290049},
+      {"State":"Pahang",         "Era":"2000–2014","Total_Affected":614239,"LabelY_L":640000,"LabelY_R":310000,"Key":true, "Rising":false,"Group":"key"},
+      {"State":"Johor",          "Era":"2000–2014","Total_Affected":601783,"LabelY_L":590000,"LabelY_R":255000,"Key":true, "Rising":false,"Group":"key"},
+      {"State":"Sabah",          "Era":"2000–2014","Total_Affected":100000,"LabelY_L":105000,"LabelY_R":338000,"Key":true, "Rising":true, "Group":"key"},
+      {"State":"Perlis",         "Era":"2000–2014","Total_Affected":50000, "LabelY_L":45000, "LabelY_R":272000,"Key":true, "Rising":true, "Group":"key"},
+      {"State":"Kelantan",       "Era":"2000–2014","Total_Affected":400000,"LabelY_L":415000,"LabelY_R":265000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Terengganu",     "Era":"2000–2014","Total_Affected":380000,"LabelY_L":375000,"LabelY_R":280000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Perak",          "Era":"2000–2014","Total_Affected":253000,"LabelY_L":258000,"LabelY_R":232000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Selangor",       "Era":"2000–2014","Total_Affected":220000,"LabelY_L":218000,"LabelY_R":196000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Negeri Sembilan","Era":"2000–2014","Total_Affected":100000,"LabelY_L":92000, "LabelY_R":118000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Melaka",         "Era":"2000–2014","Total_Affected":130000,"LabelY_L":135000,"LabelY_R":108000,"Key":false,"Rising":false,"Group":"other"},
 
-      {"State":"Johor","Era":"2000–2014","Total_Affected":601783},
-      {"State":"Johor","Era":"2015–2024","Total_Affected":273031},
-
-      {"State":"Sabah","Era":"2000–2014","Total_Affected":100000},
-      {"State":"Sabah","Era":"2015–2024","Total_Affected":325364},
-
-      {"State":"Perlis","Era":"2000–2014","Total_Affected":5000},
-      {"State":"Perlis","Era":"2015–2024","Total_Affected":262412},
-
-      {"State":"Kelantan","Era":"2000–2014","Total_Affected":400000},
-      {"State":"Kelantan","Era":"2015–2024","Total_Affected":250813},
-
-      {"State":"Terengganu","Era":"2000–2014","Total_Affected":380000},
-      {"State":"Terengganu","Era":"2015–2024","Total_Affected":268106},
-
-      {"State":"Perak","Era":"2000–2014","Total_Affected":253000},
-      {"State":"Perak","Era":"2015–2024","Total_Affected":240869},
-
-      {"State":"Selangor","Era":"2000–2014","Total_Affected":220000},
-      {"State":"Selangor","Era":"2015–2024","Total_Affected":190776},
-
-      {"State":"Negeri Sembilan","Era":"2000–2014","Total_Affected":100000},
-      {"State":"Negeri Sembilan","Era":"2015–2024","Total_Affected":124702},
-
-      {"State":"Melaka","Era":"2000–2014","Total_Affected":130000},
-      {"State":"Melaka","Era":"2015–2024","Total_Affected":115072}
+      {"State":"Pahang",         "Era":"2015–2024","Total_Affected":290049,"LabelY_L":640000,"LabelY_R":310000,"Key":true, "Rising":false,"Group":"key"},
+      {"State":"Johor",          "Era":"2015–2024","Total_Affected":273031,"LabelY_L":590000,"LabelY_R":255000,"Key":true, "Rising":false,"Group":"key"},
+      {"State":"Sabah",          "Era":"2015–2024","Total_Affected":325364,"LabelY_L":105000,"LabelY_R":338000,"Key":true, "Rising":true, "Group":"key"},
+      {"State":"Perlis",         "Era":"2015–2024","Total_Affected":262412,"LabelY_L":45000, "LabelY_R":272000,"Key":true, "Rising":true, "Group":"key"},
+      {"State":"Kelantan",       "Era":"2015–2024","Total_Affected":250813,"LabelY_L":415000,"LabelY_R":265000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Terengganu",     "Era":"2015–2024","Total_Affected":268106,"LabelY_L":375000,"LabelY_R":280000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Perak",          "Era":"2015–2024","Total_Affected":240869,"LabelY_L":258000,"LabelY_R":232000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Selangor",       "Era":"2015–2024","Total_Affected":190776,"LabelY_L":218000,"LabelY_R":196000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Negeri Sembilan","Era":"2015–2024","Total_Affected":124702,"LabelY_L":92000, "LabelY_R":118000,"Key":false,"Rising":false,"Group":"other"},
+      {"State":"Melaka",         "Era":"2015–2024","Total_Affected":115072,"LabelY_L":135000,"LabelY_R":108000,"Key":false,"Rising":false,"Group":"other"}
     ]
   },
-
-  "transform": [
+  "params": [
     {
-      "pivot": "Era",
-      "value": "Total_Affected",
-      "groupby": ["State"]
-    },
-    {
-      "calculate": "datum['2015–2024'] - datum['2000–2014']",
-      "as": "Change"
-    },
-    {
-      "calculate": "datum.Change > 0 ? 'Worsened' : 'Improved'",
-      "as": "Status"
-    },
-    {
-      "window": [
-        { "op": "rank", "as": "rank" }
-      ],
-      "sort": [{ "field": "Change", "order": "descending" }]
+      "name": "sel_state",
+      "value": "All States",
+      "bind": {
+        "input": "select",
+        "options": ["All States","Pahang","Johor","Sabah","Perlis","Kelantan","Terengganu","Perak","Selangor","Melaka","Negeri Sembilan"],
+        "name": "Highlight state: "
+      }
     }
   ],
-
-  "encoding": {
-    "y": {
-      "field": "State",
-      "type": "ordinal",
-      "sort": { "field": "Change", "order": "descending" },
-      "title": null
-    }
-  },
-
   "layer": [
     {
-      "mark": {
-        "type": "bar",
-        "cornerRadiusEnd": 4
-      },
+      "transform": [
+        {"filter": "datum.Group == 'other'"}
+      ],
+      "mark": {"type": "line", "interpolate": "linear", "strokeCap": "round", "strokeDash": [6, 4], "strokeWidth": 2, "color": "#b0b8c4", "opacity": 0.5},
       "encoding": {
         "x": {
-          "field": "Change",
-          "type": "quantitative",
+          "field": "Era", "type": "ordinal",
+          "sort": ["2000–2014","2015–2024"],
           "axis": {
-            "title": "Change in People Displaced",
-            "format": "~s"
+            "title": "", "labelAngle": 0,
+            "labelFontSize": 13, "labelFontWeight": "bold",
+            "labelPadding": 12, "orient": "top"
           }
         },
-        "color": {
-          "condition": [
-            {
-              "test": "datum.Change > 0",
-              "value": "#e74c3c"
-            }
-          ],
-          "value": "#2ecc71"
+        "y": {
+          "aggregate": "mean", "field": "Total_Affected", "type": "quantitative",
+          "scale": {"domain": [0, 680000]},
+          "axis": {"title": "Total People Displaced", "format": "~s", "tickCount": 7}
         }
       }
     },
-
     {
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 5,
-        "font": "DM Sans",
-        "fontSize": 11,
-        "fontWeight": 600
-      },
+      "transform": [
+        {"filter": "datum.Group == 'other'"}
+      ],
+      "mark": {"type": "line", "interpolate": "linear", "strokeCap": "round", "strokeDash": [6, 4], "strokeWidth": 1.5, "color": "#8090a4", "opacity": 0.25},
       "encoding": {
-        "x": { "field": "Change", "type": "quantitative" },
-        "text": { "field": "Change", "format": "," },
+        "x": {
+          "field": "Era", "type": "ordinal",
+          "sort": ["2000–2014","2015–2024"]
+        },
+        "y": {
+          "field": "Total_Affected", "type": "quantitative",
+          "scale": {"domain": [0, 680000]}
+        },
+        "detail": {"field": "State"}
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Group == 'key'"}
+      ],
+      "mark": {"type": "line", "interpolate": "linear", "strokeCap": "round"},
+      "encoding": {
+        "x": {
+          "field": "Era", "type": "ordinal",
+          "sort": ["2000–2014","2015–2024"]
+        },
+        "y": {
+          "field": "Total_Affected", "type": "quantitative",
+          "scale": {"domain": [0, 680000]}
+        },
+        "detail": {"field": "State"},
         "color": {
           "condition": [
-            {
-              "test": "datum.Change > 0",
-              "value": "#c0392b"
-            }
+            {"test": "datum.State == 'Pahang'", "value": "#0077BB"},
+            {"test": "datum.State == 'Johor'",  "value": "#EE7733"},
+            {"test": "datum.State == 'Sabah'",  "value": "#EE3377"},
+            {"test": "datum.State == 'Perlis'", "value": "#CCBB44"}
           ],
-          "value": "#1e8449"
+          "value": "#ccc"
+        },
+        "strokeWidth": {
+          "condition": {"test": "sel_state == 'All States' || datum.State == sel_state", "value": 3.5},
+          "value": 0.5
+        },
+        "opacity": {
+          "condition": {"test": "sel_state == 'All States' || datum.State == sel_state", "value": 1},
+          "value": 0.06
         }
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Group == 'key'"}
+      ],
+      "mark": {"type": "circle", "stroke": "white", "strokeWidth": 2},
+      "encoding": {
+        "x": {"field": "Era", "type": "ordinal", "sort": ["2000–2014","2015–2024"]},
+        "y": {"field": "Total_Affected", "type": "quantitative", "scale": {"domain": [0, 680000]}},
+        "color": {
+          "condition": [
+            {"test": "datum.State == 'Pahang'", "value": "#0077BB"},
+            {"test": "datum.State == 'Johor'",  "value": "#EE7733"},
+            {"test": "datum.State == 'Sabah'",  "value": "#EE3377"},
+            {"test": "datum.State == 'Perlis'", "value": "#CCBB44"}
+          ],
+          "value": "#ccc"
+        },
+        "size": {
+          "condition": {"test": "sel_state == 'All States' || datum.State == sel_state", "value": 110},
+          "value": 30
+        },
+        "opacity": {
+          "condition": {"test": "sel_state == 'All States' || datum.State == sel_state", "value": 0.95},
+          "value": 0.06
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "Era", "type": "ordinal", "title": "Era"},
+          {"field": "Total_Affected", "type": "quantitative", "title": "Displaced", "format": ","}
+        ]
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Group == 'other'"},
+        {"filter": "datum.Era == '2000–2014'"}
+      ],
+      "mark": {"type": "circle", "stroke": "white", "strokeWidth": 1.5, "opacity": 0.3},
+      "encoding": {
+        "x": {"field": "Era", "type": "ordinal", "sort": ["2000–2014","2015–2024"]},
+        "y": {"field": "Total_Affected", "type": "quantitative", "scale": {"domain": [0, 680000]}},
+        "color": {"value": "#b0b8c4"},
+        "size": {"value": 35}
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Group == 'other'"},
+        {"filter": "datum.Era == '2015–2024'"}
+      ],
+      "mark": {"type": "circle", "stroke": "white", "strokeWidth": 1.5, "opacity": 0.3},
+      "encoding": {
+        "x": {"field": "Era", "type": "ordinal", "sort": ["2000–2014","2015–2024"]},
+        "y": {"field": "Total_Affected", "type": "quantitative", "scale": {"domain": [0, 680000]}},
+        "color": {"value": "#b0b8c4"},
+        "size": {"value": 35}
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Group == 'other'"},
+        {"aggregate": [{"op": "mean", "field": "Total_Affected", "as": "avg"}], "groupby": ["Era"]},
+        {"filter": "datum.Era == '2000–2014'"}
+      ],
+      "mark": {"type": "text", "align": "right", "dx": -14, "font": "DM Sans", "fontStyle": "italic", "fontSize": 10, "fontWeight": 400},
+      "encoding": {
+        "x": {"field": "Era", "type": "ordinal", "sort": ["2000–2014","2015–2024"]},
+        "y": {"field": "avg", "type": "quantitative", "scale": {"domain": [0, 680000]}},
+        "text": {"value": "Avg others"},
+        "color": {"value": "#8090a4"}
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Group == 'other'"},
+        {"aggregate": [{"op": "mean", "field": "Total_Affected", "as": "avg"}], "groupby": ["Era"]},
+        {"filter": "datum.Era == '2015–2024'"}
+      ],
+      "mark": {"type": "text", "align": "left", "dx": 14, "font": "DM Sans", "fontStyle": "italic", "fontSize": 10, "fontWeight": 400},
+      "encoding": {
+        "x": {"field": "Era", "type": "ordinal", "sort": ["2000–2014","2015–2024"]},
+        "y": {"field": "avg", "type": "quantitative", "scale": {"domain": [0, 680000]}},
+        "text": {"value": "Avg others"},
+        "color": {"value": "#8090a4"}
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Era == '2000–2014'"},
+        {"filter": "datum.Group == 'key'"},
+        {"filter": "sel_state == 'All States' || datum.State == sel_state"}
+      ],
+      "mark": {"type": "text", "align": "right", "dx": -14, "font": "DM Sans"},
+      "encoding": {
+        "x": {"field": "Era", "type": "ordinal", "sort": ["2000–2014","2015–2024"]},
+        "y": {"field": "LabelY_L", "type": "quantitative", "scale": {"domain": [0, 680000]}},
+        "text": {"field": "State", "type": "nominal"},
+        "fontSize": {"value": 11.5},
+        "fontWeight": {"value": 700},
+        "color": {
+          "condition": [
+            {"test": "datum.State == 'Pahang'", "value": "#0055aa"},
+            {"test": "datum.State == 'Johor'",  "value": "#cc5500"},
+            {"test": "datum.State == 'Sabah'",  "value": "#cc1155"},
+            {"test": "datum.State == 'Perlis'", "value": "#998800"}
+          ],
+          "value": "#999"
+        }
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Era == '2015–2024'"},
+        {"filter": "datum.Group == 'key'"},
+        {"filter": "sel_state == 'All States' || datum.State == sel_state"}
+      ],
+      "mark": {"type": "text", "align": "left", "dx": 14, "font": "DM Sans"},
+      "encoding": {
+        "x": {"field": "Era", "type": "ordinal", "sort": ["2000–2014","2015–2024"]},
+        "y": {"field": "LabelY_R", "type": "quantitative", "scale": {"domain": [0, 680000]}},
+        "text": {
+          "condition": {"test": "datum.Rising", "field": "State", "type": "nominal"},
+          "field": "State", "type": "nominal"
+        },
+        "fontSize": {"value": 11.5},
+        "fontWeight": {"value": 700},
+        "color": {
+          "condition": [
+            {"test": "datum.State == 'Pahang'", "value": "#0055aa"},
+            {"test": "datum.State == 'Johor'",  "value": "#cc5500"},
+            {"test": "datum.State == 'Sabah'",  "value": "#cc1155"},
+            {"test": "datum.State == 'Perlis'", "value": "#998800"}
+          ],
+          "value": "#999"
+        }
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Era == '2015–2024' && datum.Rising && datum.Group == 'key'"},
+        {"filter": "sel_state == 'All States' || datum.State == sel_state"}
+      ],
+      "mark": {"type": "text", "align": "left", "dx": 14, "font": "DM Sans", "fontStyle": "italic", "fontSize": 9, "dy": 13},
+      "encoding": {
+        "x": {"field": "Era", "type": "ordinal", "sort": ["2000–2014","2015–2024"]},
+        "y": {"field": "LabelY_R", "type": "quantitative", "scale": {"domain": [0, 680000]}},
+        "text": {"value": "↑ Rising"},
+        "color": {"value": "#e74c3c"}
       }
     }
   ]
