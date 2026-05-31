@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Malaysia's 12 Major Flood Events (1965\u20132024)",
+    "subtitle": "Sorted by people displaced. Colour shows flood type. Hover for full details.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "font": "DM Sans",
+    "subtitleFont": "DM Sans",
+    "color": "#0d1b2a",
+    "subtitleColor": "#6a8090"
+  },
+  "width": "container",
+  "height": 340,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 11,
+      "orient": "bottom"
+    }
+  },
+  "data": {
+    "url": "data/landmark_events.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusTopRight": 3,
+        "cornerRadiusBottomRight": 3
+      },
+      "encoding": {
+        "y": {
+          "field": "Label",
+          "type": "nominal",
+          "sort": {
+            "field": "Affected",
+            "order": "descending"
+          },
+          "axis": {
+            "title": "",
+            "labelLimit": 300,
+            "labelFontSize": 11,
+            "labelPadding": 4
+          }
+        },
+        "x": {
+          "field": "Affected",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              310000
+            ]
+          },
+          "axis": {
+            "title": "People Displaced",
+            "tickCount": 6,
+            "format": ",.0f"
+          }
+        },
+        "color": {
+          "field": "Flood_Type",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Flood (General)",
+              "Riverine flood",
+              "Flash flood"
+            ],
+            "range": [
+              "#1a5276",
+              "#2874a6",
+              "#5dade2"
+            ]
+          },
+          "title": "Flood Type"
+        },
+        "tooltip": [
+          {
+            "field": "Label",
+            "type": "nominal",
+            "title": "Event"
+          },
+          {
+            "field": "Year",
+            "type": "quantitative",
+            "title": "Year"
+          },
+          {
+            "field": "Month_Name",
+            "type": "nominal",
+            "title": "Month"
+          },
+          {
+            "field": "Affected",
+            "type": "quantitative",
+            "title": "People Displaced",
+            "format": ","
+          },
+          {
+            "field": "Deaths",
+            "type": "quantitative",
+            "title": "Deaths"
+          },
+          {
+            "field": "Flood_Type",
+            "type": "nominal",
+            "title": "Flood Type"
+          },
+          {
+            "field": "Note",
+            "type": "nominal",
+            "title": "Note"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Affected >= 60000"
+        },
+        {
+          "calculate": "round(datum.Affected / 1000) + 'k'",
+          "as": "label_text"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "fontSize": 10,
+        "fontWeight": 700,
+        "font": "DM Sans",
+        "color": "white"
+      },
+      "encoding": {
+        "y": {
+          "field": "Label",
+          "type": "nominal",
+          "sort": {
+            "field": "Affected",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "Affected",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label_text",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+State,Month_Num,Month_Name,Season,Events
+Johor,1,Jan,NE Monsoon,6
+Johor,2,Feb,NE Monsoon,1
+Johor,3,Mar,Transition,1
+Johor,4,Apr,Transition,0
+Johor,5,May,SW Monsoon,0
+Johor,6,Jun,SW Monsoon,0
+Johor,7,Jul,SW Monsoon,0
+Johor,8,Aug,SW Monsoon,0
+Johor,9,Sep,Transition,1
+Johor,10,Oct,Transition,1
+Johor,11,Nov,NE Monsoon,2
+Johor,12,Dec,NE Monsoon,7
+Kedah,1,Jan,NE Monsoon,0
+Kedah,2,Feb,NE Monsoon,0
+Kedah,3,Mar,Transition,0
+Kedah,4,Apr,Transition,0
+Kedah,5,May,SW Monsoon,0
+Kedah,6,Jun,SW Monsoon,0
+Kedah,7,Jul,SW Monsoon,0
+Kedah,8,Aug,SW Monsoon,0
+Kedah,9,Sep,Transition,0
+Kedah,10,Oct,Transition,3
+Kedah,11,Nov,NE Monsoon,3
+Kedah,12,Dec,NE Monsoon,0
+Kelantan,1,Jan,NE Monsoon,2
+Kelantan,2,Feb,NE Monsoon,2
+Kelantan,3,Mar,Transition,0
+Kelantan,4,Apr,Transition,0
+Kelantan,5,May,SW Monsoon,0
+Kelantan,6,Jun,SW Monsoon,0
+Kelantan,7,Jul,SW Monsoon,0
+Kelantan,8,Aug,SW Monsoon,0
+Kelantan,9,Sep,Transition,0
+Kelantan,10,Oct,Transition,1
+Kelantan,11,Nov,NE Monsoon,3
+Kelantan,12,Dec,NE Monsoon,10
+Kuala Lumpur,1,Jan,NE Monsoon,0
+Kuala Lumpur,2,Feb,NE Monsoon,0
+Kuala Lumpur,3,Mar,Transition,1
+Kuala Lumpur,4,Apr,Transition,0
+Kuala Lumpur,5,May,SW Monsoon,0
+Kuala Lumpur,6,Jun,SW Monsoon,0
+Kuala Lumpur,7,Jul,SW Monsoon,0
+Kuala Lumpur,8,Aug,SW Monsoon,0
+Kuala Lumpur,9,Sep,Transition,0
+Kuala Lumpur,10,Oct,Transition,3
+Kuala Lumpur,11,Nov,NE Monsoon,1
+Kuala Lumpur,12,Dec,NE Monsoon,2
+Melaka,1,Jan,NE Monsoon,1
+Melaka,2,Feb,NE Monsoon,1
+Melaka,3,Mar,Transition,1
+Melaka,4,Apr,Transition,0
+Melaka,5,May,SW Monsoon,1
+Melaka,6,Jun,SW Monsoon,0
+Melaka,7,Jul,SW Monsoon,0
+Melaka,8,Aug,SW Monsoon,0
+Melaka,9,Sep,Transition,0
+Melaka,10,Oct,Transition,2
+Melaka,11,Nov,NE Monsoon,1
+Melaka,12,Dec,NE Monsoon,2
+Negeri Sembilan,1,Jan,NE Monsoon,0
+Negeri Sembilan,2,Feb,NE Monsoon,0
+Negeri Sembilan,3,Mar,Transition,1
+Negeri Sembilan,4,Apr,Transition,0
+Negeri Sembilan,5,May,SW Monsoon,0
+Negeri Sembilan,6,Jun,SW Monsoon,0
+Negeri Sembilan,7,Jul,SW Monsoon,0
+Negeri Sembilan,8,Aug,SW Monsoon,0
+Negeri Sembilan,9,Sep,Transition,0
+Negeri Sembilan,10,Oct,Transition,2
+Negeri Sembilan,11,Nov,NE Monsoon,0
+Negeri Sembilan,12,Dec,NE Monsoon,2
+Pahang,1,Jan,NE Monsoon,3
+Pahang,2,Feb,NE Monsoon,2
+Pahang,3,Mar,Transition,0
+Pahang,4,Apr,Transition,0
+Pahang,5,May,SW Monsoon,0
+Pahang,6,Jun,SW Monsoon,0
+Pahang,7,Jul,SW Monsoon,0
+Pahang,8,Aug,SW Monsoon,0
+Pahang,9,Sep,Transition,0
+Pahang,10,Oct,Transition,2
+Pahang,11,Nov,NE Monsoon,2
+Pahang,12,Dec,NE Monsoon,10
+Perak,1,Jan,NE Monsoon,2
+Perak,2,Feb,NE Monsoon,0
+Perak,3,Mar,Transition,0
+Perak,4,Apr,Transition,0
+Perak,5,May,SW Monsoon,0
+Perak,6,Jun,SW Monsoon,0
+Perak,7,Jul,SW Monsoon,0
+Perak,8,Aug,SW Monsoon,0
+Perak,9,Sep,Transition,0
+Perak,10,Oct,Transition,2
+Perak,11,Nov,NE Monsoon,4
+Perak,12,Dec,NE Monsoon,3
+Perlis,1,Jan,NE Monsoon,0
+Perlis,2,Feb,NE Monsoon,0
+Perlis,3,Mar,Transition,0
+Perlis,4,Apr,Transition,0
+Perlis,5,May,SW Monsoon,0
+Perlis,6,Jun,SW Monsoon,0
+Perlis,7,Jul,SW Monsoon,0
+Perlis,8,Aug,SW Monsoon,0
+Perlis,9,Sep,Transition,0
+Perlis,10,Oct,Transition,1
+Perlis,11,Nov,NE Monsoon,1
+Perlis,12,Dec,NE Monsoon,1
+Pulau Pinang,1,Jan,NE Monsoon,0
+Pulau Pinang,2,Feb,NE Monsoon,0
+Pulau Pinang,3,Mar,Transition,0
+Pulau Pinang,4,Apr,Transition,0
+Pulau Pinang,5,May,SW Monsoon,0
+Pulau Pinang,6,Jun,SW Monsoon,0
+Pulau Pinang,7,Jul,SW Monsoon,0
+Pulau Pinang,8,Aug,SW Monsoon,0
+Pulau Pinang,9,Sep,Transition,0
+Pulau Pinang,10,Oct,Transition,1
+Pulau Pinang,11,Nov,NE Monsoon,2
+Pulau Pinang,12,Dec,NE Monsoon,0
+Sabah,1,Jan,NE Monsoon,4
+Sabah,2,Feb,NE Monsoon,0
+Sabah,3,Mar,Transition,0
+Sabah,4,Apr,Transition,0
+Sabah,5,May,SW Monsoon,0
+Sabah,6,Jun,SW Monsoon,0
+Sabah,7,Jul,SW Monsoon,0
+Sabah,8,Aug,SW Monsoon,0
+Sabah,9,Sep,Transition,0
+Sabah,10,Oct,Transition,0
+Sabah,11,Nov,NE Monsoon,1
+Sabah,12,Dec,NE Monsoon,3
+Sarawak,1,Jan,NE Monsoon,1
+Sarawak,2,Feb,NE Monsoon,1
+Sarawak,3,Mar,Transition,0
+Sarawak,4,Apr,Transition,1
+Sarawak,5,May,SW Monsoon,1
+Sarawak,6,Jun,SW Monsoon,1
+Sarawak,7,Jul,SW Monsoon,0
+Sarawak,8,Aug,SW Monsoon,0
+Sarawak,9,Sep,Transition,1
+Sarawak,10,Oct,Transition,0
+Sarawak,11,Nov,NE Monsoon,0
+Sarawak,12,Dec,NE Monsoon,1
+Selangor,1,Jan,NE Monsoon,2
+Selangor,2,Feb,NE Monsoon,0
+Selangor,3,Mar,Transition,0
+Selangor,4,Apr,Transition,0
+Selangor,5,May,SW Monsoon,0
+Selangor,6,Jun,SW Monsoon,0
+Selangor,7,Jul,SW Monsoon,0
+Selangor,8,Aug,SW Monsoon,0
+Selangor,9,Sep,Transition,0
+Selangor,10,Oct,Transition,2
+Selangor,11,Nov,NE Monsoon,1
+Selangor,12,Dec,NE Monsoon,3
+Terengganu,1,Jan,NE Monsoon,2
+Terengganu,2,Feb,NE Monsoon,2
+Terengganu,3,Mar,Transition,0
+Terengganu,4,Apr,Transition,0
+Terengganu,5,May,SW Monsoon,0
+Terengganu,6,Jun,SW Monsoon,0
+Terengganu,7,Jul,SW Monsoon,0
+Terengganu,8,Aug,SW Monsoon,0
+Terengganu,9,Sep,Transition,0
+Terengganu,10,Oct,Transition,1
+Terengganu,11,Nov,NE Monsoon,3
+Terengganu,12,Dec,NE Monsoon,10

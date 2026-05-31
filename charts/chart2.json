@@ -1,0 +1,159 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "60 Years of Flood Displacement in Malaysia (1965–2024)",
+    "subtitle": "Use the sliders to zoom into any time window. Hover dots for details.",
+    "anchor": "start", "fontSize": 14, "subtitleFontSize": 11,
+    "font": "DM Sans", "subtitleFont": "DM Sans",
+    "color": "#0d1b2a", "subtitleColor": "#6a8090"
+  },
+  "width": "container",
+  "height": 300,
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "grid": false, "domain": false, "ticks": false,
+      "labelFont": "DM Sans", "titleFont": "DM Sans",
+      "labelFontSize": 11, "titleFontSize": 12
+    },
+    "legend": {"disable": true}
+  },
+  "data": {
+    "values": [
+      {"Year": 1965, "Total_Affected": 300000, "Events": 1, "Deaths": 6},
+      {"Year": 1967, "Total_Affected": 140000, "Events": 1, "Deaths": 50},
+      {"Year": 1970, "Total_Affected": 243000, "Events": 1, "Deaths": 61},
+      {"Year": 1978, "Total_Affected": 3000, "Events": 1, "Deaths": 0},
+      {"Year": 1983, "Total_Affected": 15000, "Events": 1, "Deaths": 10},
+      {"Year": 1986, "Total_Affected": 25000, "Events": 1, "Deaths": 11},
+      {"Year": 1987, "Total_Affected": 2576, "Events": 1, "Deaths": 3},
+      {"Year": 1988, "Total_Affected": 60000, "Events": 1, "Deaths": 27},
+      {"Year": 1993, "Total_Affected": 25000, "Events": 1, "Deaths": 30},
+      {"Year": 1996, "Total_Affected": 418, "Events": 1, "Deaths": 0},
+      {"Year": 1998, "Total_Affected": 2500, "Events": 1, "Deaths": 0},
+      {"Year": 1999, "Total_Affected": 2000, "Events": 1, "Deaths": 1},
+      {"Year": 2000, "Total_Affected": 8000, "Events": 1, "Deaths": 12},
+      {"Year": 2001, "Total_Affected": 33200, "Events": 4, "Deaths": 11},
+      {"Year": 2003, "Total_Affected": 18800, "Events": 3, "Deaths": 8},
+      {"Year": 2004, "Total_Affected": 31038, "Events": 3, "Deaths": 16},
+      {"Year": 2005, "Total_Affected": 30600, "Events": 2, "Deaths": 13},
+      {"Year": 2006, "Total_Affected": 106518, "Events": 4, "Deaths": 6},
+      {"Year": 2007, "Total_Affected": 166533, "Events": 2, "Deaths": 46},
+      {"Year": 2008, "Total_Affected": 8000, "Events": 2, "Deaths": 0},
+      {"Year": 2009, "Total_Affected": 10875, "Events": 2, "Deaths": 0},
+      {"Year": 2011, "Total_Affected": 20000, "Events": 1, "Deaths": 2},
+      {"Year": 2013, "Total_Affected": 75000, "Events": 1, "Deaths": 4},
+      {"Year": 2014, "Total_Affected": 230000, "Events": 1, "Deaths": 17},
+      {"Year": 2015, "Total_Affected": 3000, "Events": 1, "Deaths": 1},
+      {"Year": 2016, "Total_Affected": 31841, "Events": 4, "Deaths": 0},
+      {"Year": 2017, "Total_Affected": 21981, "Events": 3, "Deaths": 9},
+      {"Year": 2018, "Total_Affected": 16900, "Events": 2, "Deaths": 2},
+      {"Year": 2019, "Total_Affected": 22477, "Events": 4, "Deaths": 2},
+      {"Year": 2020, "Total_Affected": 21883, "Events": 5, "Deaths": 0},
+      {"Year": 2021, "Total_Affected": 164641, "Events": 8, "Deaths": 79},
+      {"Year": 2022, "Total_Affected": 90625, "Events": 5, "Deaths": 17},
+      {"Year": 2023, "Total_Affected": 84187, "Events": 4, "Deaths": 6},
+      {"Year": 2024, "Total_Affected": 137410, "Events": 2, "Deaths": 5}
+    ]
+  },
+  "params": [
+    {
+      "name": "year_from",
+      "value": 1965,
+      "bind": {
+        "input": "range",
+        "min": 1965, "max": 2023, "step": 1,
+        "name": "From: "
+      }
+    },
+    {
+      "name": "year_to",
+      "value": 2024,
+      "bind": {
+        "input": "range",
+        "min": 1966, "max": 2024, "step": 1,
+        "name": "To:     "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Year >= year_from && datum.Year <= year_to"}
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#2e86c1",
+        "opacity": 0.1,
+        "line": false
+      },
+      "encoding": {
+        "x": {
+          "field": "Year", "type": "quantitative",
+          "scale": {"domainMin": {"expr": "year_from"}, "domainMax": {"expr": "year_to"}},
+          "axis": {"title": "Year", "tickCount": 8, "format": "d"}
+        },
+        "y": {
+          "field": "Total_Affected", "type": "quantitative",
+          "axis": {"title": "People Displaced", "format": "~s", "tickCount": 5}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#2e86c1",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year", "type": "quantitative",
+          "scale": {"domainMin": {"expr": "year_from"}, "domainMax": {"expr": "year_to"}}
+        },
+        "y": {"field": "Total_Affected", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "color": "#2e86c1",
+        "filled": true,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "x": {
+          "field": "Year", "type": "quantitative",
+          "scale": {"domainMin": {"expr": "year_from"}, "domainMax": {"expr": "year_to"}}
+        },
+        "y": {"field": "Total_Affected", "type": "quantitative"},
+        "size": {
+          "condition": {"test": "datum.Total_Affected > 100000", "value": 130},
+          "value": 60
+        },
+        "tooltip": [
+          {"field": "Year", "type": "quantitative", "title": "Year", "format": "d"},
+          {"field": "Events", "type": "quantitative", "title": "Events"},
+          {"field": "Total_Affected", "type": "quantitative", "title": "Displaced", "format": ","},
+          {"field": "Deaths", "type": "quantitative", "title": "Deaths"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.Total_Affected > 100000"}],
+      "mark": {
+        "type": "text", "dy": -16,
+        "fontSize": 10, "fontWeight": 700,
+        "color": "#1a5276", "font": "DM Sans"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year", "type": "quantitative",
+          "scale": {"domainMin": {"expr": "year_from"}, "domainMax": {"expr": "year_to"}}
+        },
+        "y": {"field": "Total_Affected", "type": "quantitative"},
+        "text": {"field": "Year", "type": "quantitative", "format": "d"}
+      }
+    }
+  ]
+}

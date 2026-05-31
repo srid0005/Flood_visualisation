@@ -1,0 +1,351 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": {
+    "text": "Homes Account for the Largest Share of Flood Losses",
+    "subtitle": "Damage composition differs across Kelantan, Kedah and Terengganu. Toggle between percentage share and RM value.",
+    "anchor": "start",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "font": "DM Sans",
+    "subtitleFont": "DM Sans",
+    "color": "#0a1628",
+    "subtitleColor": "#526070"
+  },
+
+  "width": "container",
+  "height": 270,
+
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+
+    "axis": {
+      "grid": false,
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+
+    "legend": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 11
+    }
+  },
+
+  "params": [
+    {
+      "name": "ch13_view",
+      "value": "pct",
+      "bind": {
+        "input": "select",
+        "options": ["pct", "rm"],
+        "labels": [
+          "% Share of Damage",
+          "Absolute (RM million)"
+        ],
+        "name": "View: "
+      }
+    },
+
+    {
+      "name": "ch13_cat",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Living Quarters",
+          "Business Premises",
+          "Vehicles",
+          "Other"
+        ],
+        "name": "Highlight category: "
+      }
+    }
+  ],
+
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {"g":25},
+          {"g":50},
+          {"g":75}
+        ]
+      },
+
+      "transform": [
+        {"filter": "ch13_view == 'pct'"}
+      ],
+
+      "mark": {
+        "type": "rule",
+        "color": "#eaeff5",
+        "strokeWidth": 1
+      },
+
+      "encoding": {
+        "x": {
+          "field": "g",
+          "type": "quantitative",
+          "scale": {"domain": [0,100]}
+        }
+      }
+    },
+
+    {
+      "data": {
+        "values": [
+          {"g":50},
+          {"g":100},
+          {"g":150},
+          {"g":200}
+        ]
+      },
+
+      "transform": [
+        {"filter": "ch13_view == 'rm'"}
+      ],
+
+      "mark": {
+        "type": "rule",
+        "color": "#eaeff5",
+        "strokeWidth": 1
+      },
+
+      "encoding": {
+        "x": {
+          "field": "g",
+          "type": "quantitative",
+          "scale": {"domain": [0,270]}
+        }
+      }
+    },
+
+    {
+      "data": {
+        "values": [
+          {"g":0}
+        ]
+      },
+
+      "mark": {
+        "type": "rule",
+        "color": "#cfd9e6",
+        "strokeWidth": 1.5
+      },
+
+      "encoding": {
+        "x": {
+          "field": "g",
+          "type": "quantitative"
+        }
+      }
+    },
+
+    {
+      "data": {
+        "values": [
+
+          {"State":"Kelantan","Category":"Living Quarters","RM":139.0,"Pct":52.9,"Order":1},
+          {"State":"Kelantan","Category":"Business Premises","RM":27.1,"Pct":10.3,"Order":2},
+          {"State":"Kelantan","Category":"Vehicles","RM":4.0,"Pct":1.5,"Order":3},
+          {"State":"Kelantan","Category":"Other","RM":92.9,"Pct":35.3,"Order":4},
+
+          {"State":"Kedah","Category":"Living Quarters","RM":54.0,"Pct":27.9,"Order":1},
+          {"State":"Kedah","Category":"Business Premises","RM":4.3,"Pct":2.2,"Order":2},
+          {"State":"Kedah","Category":"Vehicles","RM":2.1,"Pct":1.1,"Order":3},
+          {"State":"Kedah","Category":"Other","RM":133.3,"Pct":68.8,"Order":4},
+
+          {"State":"Terengganu","Category":"Living Quarters","RM":103.1,"Pct":56.6,"Order":1},
+          {"State":"Terengganu","Category":"Business Premises","RM":16.4,"Pct":9.0,"Order":2},
+          {"State":"Terengganu","Category":"Vehicles","RM":5.8,"Pct":3.2,"Order":3},
+          {"State":"Terengganu","Category":"Other","RM":56.7,"Pct":31.2,"Order":4}
+
+        ]
+      },
+
+      "transform": [
+        {
+          "calculate": "ch13_view == 'pct' ? datum.Pct : datum.RM",
+          "as": "XVal"
+        }
+      ],
+
+      "layer": [
+
+        {
+          "mark": {
+            "type": "bar",
+            "height": 58,
+            "cornerRadius": 2
+          },
+
+          "encoding": {
+
+            "x": {
+              "field": "XVal",
+              "type": "quantitative",
+              "stack": "zero",
+
+              "axis": {
+                "title": {
+                  "signal": "ch13_view == 'pct' ? 'Share of Total Damage (%)' : 'Flood Damage (RM million)'"
+                },
+                "domainColor": "#cfd9e6",
+                "domainWidth": 1.5,
+                "tickColor": "#cfd9e6"
+              }
+            },
+
+            "y": {
+              "field": "State",
+              "type": "nominal",
+              "sort": [
+                "Kelantan",
+                "Terengganu",
+                "Kedah"
+              ],
+
+              "axis": {
+                "title": "",
+                "domainColor": "#cfd9e6",
+                "domainWidth": 1.5,
+                "tickColor": "#cfd9e6"
+              }
+            },
+
+            "color": {
+              "field": "Category",
+              "type": "nominal",
+
+              "sort": {
+                "field": "Order",
+                "op": "min"
+              },
+
+              "scale": {
+                "domain": [
+                  "Living Quarters",
+                  "Business Premises",
+                  "Vehicles",
+                  "Other"
+                ],
+
+                "range": [
+                  "#1561A0",
+                  "#5B8FF9",
+                  "#F28E2B",
+                  "#C7CDD4"
+                ]
+              },
+
+              "title": null,
+
+              "legend": {
+  "orient": "bottom",
+  "direction": "horizontal",
+  "columns": 4,
+  "symbolSize": 120,
+  "labelFontSize": 10,
+  "offset": 10
+}
+            },
+
+            "opacity": {
+              "condition": {
+                "test": "ch13_cat == 'All' || datum.Category == ch13_cat",
+                "value": 1
+              },
+              "value": 0.25
+            },
+
+            "tooltip": [
+              {
+                "field": "State",
+                "type": "nominal"
+              },
+              {
+                "field": "Category",
+                "type": "nominal"
+              },
+              {
+                "field": "RM",
+                "type": "quantitative",
+                "title": "RM million",
+                "format": ".1f"
+              },
+              {
+                "field": "Pct",
+                "type": "quantitative",
+                "title": "Share %",
+                "format": ".1f"
+              }
+            ]
+          }
+        },
+
+        {
+          "transform": [
+            {"filter": "datum.Pct >= 8"}
+          ],
+
+          "mark": {
+            "type": "text",
+            "font": "DM Sans",
+            "fontSize": 12,
+            "fontWeight": 700,
+            "color": "white",
+            "baseline": "middle"
+          },
+
+          "encoding": {
+
+            "x": {
+              "field": "XVal",
+              "type": "quantitative",
+              "stack": "zero",
+              "band": 0.5
+            },
+
+            "y": {
+              "field": "State",
+              "type": "nominal",
+              "sort": [
+                "Kelantan",
+                "Terengganu",
+                "Kedah"
+              ]
+            },
+
+            "text": {
+              "condition": {
+                "test": "ch13_view == 'pct'",
+                "field": "Pct",
+                "type": "quantitative",
+                "format": ".0f"
+              },
+
+              "field": "RM",
+              "type": "quantitative",
+              "format": ".0f"
+            },
+
+            "opacity": {
+              "condition": {
+                "test": "ch13_cat == 'All' || datum.Category == ch13_cat",
+                "value": 1
+              },
+              "value": 0
+            }
+          }
+        }
+
+      ]
+    }
+  ]
+}

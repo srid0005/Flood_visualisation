@@ -1,0 +1,13 @@
+Month_Num,Month_Name,Season,Total_Events,Total_Affected,Avg_Per_Event
+1,January,NE Monsoon,13,371802,28600
+2,February,NE Monsoon,6,88854,14809
+3,March,Transition,2,10428,5214
+4,April,Transition,2,2500,1250
+5,May,SW Monsoon,1,5782,5782
+6,June,SW Monsoon,3,11210,3737
+7,July,SW Monsoon,3,1269,423
+8,August,SW Monsoon,2,14828,7414
+9,September,Transition,1,255,255
+10,October,Transition,6,22812,3802
+11,November,NE Monsoon,14,175263,12519
+12,December,NE Monsoon,21,1309590,62361

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": {
+    "text": "Flood Risk in Malaysia Follows a Strong Monsoon System",
+    "subtitle": "Seasonal intensity of national flood impact across months",
+    "anchor": "start",
+    "font": "DM Sans",
+    "fontSize": 16,
+    "subtitleFontSize": 11
+  },
+
+  "width": 760,
+  "height": 500,
+
+  "data": {
+    "values": [
+      {"Month_Num":1,"Month":"Jan","Season":"NE","Affected":371802},
+      {"Month_Num":2,"Month":"Feb","Season":"NE","Affected":88854},
+      {"Month_Num":3,"Month":"Mar","Season":"Transition","Affected":10428},
+      {"Month_Num":4,"Month":"Apr","Season":"Transition","Affected":12000},
+      {"Month_Num":5,"Month":"May","Season":"SW","Affected":18000},
+      {"Month_Num":6,"Month":"Jun","Season":"SW","Affected":22000},
+      {"Month_Num":7,"Month":"Jul","Season":"SW","Affected":45000},
+      {"Month_Num":8,"Month":"Aug","Season":"SW","Affected":38000},
+      {"Month_Num":9,"Month":"Sep","Season":"Transition","Affected":15000},
+      {"Month_Num":10,"Month":"Oct","Season":"Transition","Affected":21000},
+      {"Month_Num":11,"Month":"Nov","Season":"NE","Affected":210000},
+      {"Month_Num":12,"Month":"Dec","Season":"NE","Affected":1300000}
+    ]
+  },
+
+  "layer": [
+
+    /* =========================
+       MAIN AREA (WITH TOOLTIP)
+    ========================== */
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone"
+      },
+
+      "encoding": {
+        "x": {
+          "field": "Month_Num",
+          "type": "quantitative",
+          "axis": {
+            "title": "Month",
+            "labelExpr": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value-1]"
+          }
+        },
+
+        "y": {
+          "field": "Affected",
+          "type": "quantitative",
+          "axis": {
+            "title": "People Affected",
+            "format": "~s"
+          }
+        },
+
+        "color": {
+          "field": "Season",
+          "type": "nominal",
+          "scale": {
+            "domain": ["NE","SW","Transition"],
+            "range": ["#2e86c1","#27ae60","#e67e22"]
+          }
+        },
+
+        "tooltip": [
+          {"field": "Month", "type": "nominal", "title": "Month"},
+          {"field": "Season", "type": "nominal", "title": "Season"},
+          {"field": "Affected", "type": "quantitative", "title": "People Affected", "format": ","}
+        ]
+      }
+    },
+
+    /* =========================
+       DECEMBER INDICATOR (POINT)
+    ========================== */
+    {
+      "transform": [
+        {"filter": "datum.Month_Num == 12"}
+      ],
+      "mark": {
+        "type": "point",
+        "shape": "triangle",
+        "size": 220,
+        "color": "#e74c3c",
+        "stroke": "white",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {"field": "Month_Num", "type": "quantitative"},
+        "y": {"field": "Affected", "type": "quantitative"}
+      }
+    },
+
+    /* =========================
+       DECEMBER LABEL
+    ========================== */
+    {
+      "transform": [
+        {"filter": "datum.Month_Num == 12"}
+      ],
+      "mark": {
+        "type": "text",
+        "dy": -30,
+        "fontSize": 13,
+        "fontWeight": 900,
+        "color": "#e74c3c"
+      },
+      "encoding": {
+        "x": {"field": "Month_Num", "type": "quantitative"},
+        "y": {"field": "Affected", "type": "quantitative"},
+        "text": {"value": "DECEMBER PEAK — 1.3M AFFECTED"}
+      }
+    }
+
+  ]
+}

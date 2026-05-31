@@ -1,0 +1,479 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Flood Damage by State: 2022 vs. 2024 (RM million)",
+    "subtitle": "Grey dot = 2022 loss. Coloured dot = 2024 loss. Red line = worsened. Teal = improved. Filter by direction.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "font": "Inter, sans-serif",
+    "subtitleFont": "Inter, sans-serif",
+    "color": "#0a1628",
+    "subtitleColor": "#526070"
+  },
+  "width": "container",
+  "height": 420,
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "grid": false,
+      "labelFont": "Inter, sans-serif",
+      "titleFont": "Inter, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFont": "Inter, sans-serif",
+      "titleFont": "Inter, sans-serif",
+      "labelFontSize": 11
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "State": "Kelantan",
+        "Loss_2022": 153.1,
+        "Loss_2024": 263.0,
+        "Change": 109.9,
+        "Direction": "Worsened"
+      },
+      {
+        "State": "Kedah",
+        "Loss_2022": 30.8,
+        "Loss_2024": 193.7,
+        "Change": 162.9,
+        "Direction": "Worsened"
+      },
+      {
+        "State": "Terengganu",
+        "Loss_2022": 215.2,
+        "Loss_2024": 182.0,
+        "Change": -33.2,
+        "Direction": "Improved"
+      },
+      {
+        "State": "Johor",
+        "Loss_2022": 4.4,
+        "Loss_2024": 59.0,
+        "Change": 54.6,
+        "Direction": "Worsened"
+      },
+      {
+        "State": "Perak",
+        "Loss_2022": 14.9,
+        "Loss_2024": 57.2,
+        "Change": 42.3,
+        "Direction": "Worsened"
+      },
+      {
+        "State": "Pahang",
+        "Loss_2022": 144.0,
+        "Loss_2024": 37.3,
+        "Change": -106.7,
+        "Direction": "Improved"
+      },
+      {
+        "State": "Sabah",
+        "Loss_2022": 6.3,
+        "Loss_2024": 36.8,
+        "Change": 30.5,
+        "Direction": "Worsened"
+      },
+      {
+        "State": "Sarawak",
+        "Loss_2022": 1.3,
+        "Loss_2024": 27.4,
+        "Change": 26.1,
+        "Direction": "Worsened"
+      },
+      {
+        "State": "Selangor",
+        "Loss_2022": 25.5,
+        "Loss_2024": 22.6,
+        "Change": -2.9,
+        "Direction": "Improved"
+      },
+      {
+        "State": "Negeri Sembilan",
+        "Loss_2022": 21.0,
+        "Loss_2024": 20.5,
+        "Change": -0.5,
+        "Direction": "Improved"
+      },
+      {
+        "State": "Melaka",
+        "Loss_2022": 2.3,
+        "Loss_2024": 8.9,
+        "Change": 6.6,
+        "Direction": "Worsened"
+      },
+      {
+        "State": "Pulau Pinang",
+        "Loss_2022": 0.2,
+        "Loss_2024": 8.7,
+        "Change": 8.5,
+        "Direction": "Worsened"
+      },
+      {
+        "State": "Kuala Lumpur",
+        "Loss_2022": 3.4,
+        "Loss_2024": 8.1,
+        "Change": 4.7,
+        "Direction": "Worsened"
+      },
+      {
+        "State": "Perlis",
+        "Loss_2022": 0.0,
+        "Loss_2024": 5.1,
+        "Change": 5.1,
+        "Direction": "Worsened"
+      }
+    ]
+  },
+  "params": [
+    {
+      "name": "ch12_dir",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Worsened",
+          "Improved"
+        ],
+        "name": "Filter: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#eaeff5",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": 50
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#eaeff5",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": 100
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#eaeff5",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": 150
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#eaeff5",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": 200
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#eaeff5",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": 250
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#cfd9e6",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "ch12_dir == 'All' || datum.Direction == ch12_dir"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 4
+      },
+      "encoding": {
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "sort": {
+            "field": "Loss_2024",
+            "order": "descending"
+          },
+          "axis": {
+            "title": "",
+            "domainColor": "#cfd9e6",
+            "domainWidth": 1.5,
+            "tickColor": "#cfd9e6"
+          }
+        },
+        "x": {
+          "field": "Loss_2022",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              305
+            ]
+          },
+          "axis": {
+            "title": "Flood Damage (RM million)",
+            "tickCount": 6,
+            "domainColor": "#cfd9e6",
+            "domainWidth": 1.5,
+            "tickColor": "#cfd9e6"
+          }
+        },
+        "x2": {
+          "field": "Loss_2024"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Direction == 'Worsened'",
+            "value": "#c0392b"
+          },
+          "value": "#0f9b8a"
+        },
+        "opacity": {
+          "value": 0.75
+        },
+        "tooltip": [
+          {
+            "field": "State",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "Direction",
+            "type": "nominal",
+            "title": "Direction"
+          },
+          {
+            "field": "Loss_2022",
+            "type": "quantitative",
+            "title": "2022 (RM mil)",
+            "format": ".1f"
+          },
+          {
+            "field": "Loss_2024",
+            "type": "quantitative",
+            "title": "2024 (RM mil)",
+            "format": ".1f"
+          },
+          {
+            "field": "Change",
+            "type": "quantitative",
+            "title": "Change (RM mil)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "ch12_dir == 'All' || datum.Direction == ch12_dir"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 160,
+        "color": "#b0bcc8",
+        "strokeWidth": 2,
+        "opacity": 1,
+        "stroke": "white"
+      },
+      "encoding": {
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "sort": {
+            "field": "Loss_2024",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "Loss_2022",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              305
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "State",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "Loss_2022",
+            "type": "quantitative",
+            "title": "2022 Loss (RM mil)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "ch12_dir == 'All' || datum.Direction == ch12_dir"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 160,
+        "strokeWidth": 2,
+        "opacity": 1,
+        "stroke": "white"
+      },
+      "encoding": {
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "sort": {
+            "field": "Loss_2024",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "Loss_2024",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              305
+            ]
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Direction == 'Worsened'",
+            "value": "#c0392b"
+          },
+          "value": "#0f9b8a"
+        },
+        "tooltip": [
+          {
+            "field": "State",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "Direction",
+            "type": "nominal",
+            "title": "Direction"
+          },
+          {
+            "field": "Loss_2024",
+            "type": "quantitative",
+            "title": "2024 Loss (RM mil)",
+            "format": ".1f"
+          },
+          {
+            "field": "Change",
+            "type": "quantitative",
+            "title": "Change (RM mil)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "ch12_dir == 'All' || datum.Direction == ch12_dir"
+        },
+        {
+          "filter": "abs(datum.Change) >= 40"
+        },
+        {
+          "calculate": "max(datum.Loss_2022, datum.Loss_2024)",
+          "as": "Label_X"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 9.5,
+        "fontWeight": 700,
+        "font": "Inter, sans-serif",
+        "dy": 0
+      },
+      "encoding": {
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "sort": {
+            "field": "Loss_2024",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "Label_X",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              305
+            ]
+          }
+        },
+        "text": {
+          "field": "Change",
+          "type": "quantitative",
+          "format": "+.0f"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Direction == 'Worsened'",
+            "value": "#8b1f0f"
+          },
+          "value": "#0a6b5a"
+        }
+      }
+    }
+  ]
+}

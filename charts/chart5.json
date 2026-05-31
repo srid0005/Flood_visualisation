@@ -1,0 +1,178 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Flood Events by State and Month \u2014 60-Year Record",
+    "subtitle": "Darker = more events. Numbers show count in high-frequency cells. Hover for details.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "font": "Inter, DM Sans, sans-serif",
+    "subtitleFont": "Inter, DM Sans, sans-serif",
+    "color": "#0a1628",
+    "subtitleColor": "#526070"
+  },
+  "width": "container",
+  "height": 420,
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelFont": "Inter, sans-serif",
+      "titleFont": "Inter, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFont": "Inter, sans-serif",
+      "titleFont": "Inter, sans-serif",
+      "labelFontSize": 11
+    }
+  },
+  "data": {
+    "url": "data/heatmap_clean.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "white",
+        "strokeWidth": 2,
+        "cornerRadius": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "Month_Name",
+          "type": "ordinal",
+          "sort": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ],
+          "axis": {
+            "title": "Month",
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "sort": {
+            "field": "Events",
+            "op": "sum",
+            "order": "descending"
+          },
+          "axis": {
+            "title": ""
+          }
+        },
+        "color": {
+          "field": "Events",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "blues",
+            "domain": [
+              0,
+              10
+            ]
+          },
+          "title": "Events",
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 160,
+            "title": "Flood Events"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "State",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "Month_Name",
+            "type": "nominal",
+            "title": "Month"
+          },
+          {
+            "field": "Season",
+            "type": "nominal",
+            "title": "Season"
+          },
+          {
+            "field": "Events",
+            "type": "quantitative",
+            "title": "Events"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Events >= 4"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "fontWeight": 700,
+        "font": "Inter, sans-serif",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "x": {
+          "field": "Month_Name",
+          "type": "ordinal",
+          "sort": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ]
+        },
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "sort": {
+            "field": "Events",
+            "op": "sum",
+            "order": "descending"
+          }
+        },
+        "text": {
+          "field": "Events",
+          "type": "quantitative"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.Events >= 7",
+            "value": "white"
+          },
+          "value": "#1a3a5c"
+        }
+      }
+    }
+  ]
+}

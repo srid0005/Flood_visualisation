@@ -1,0 +1,163 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": {
+    "text": "How Extreme Were Malaysia's Recent Flood Losses?",
+    "subtitle": "Compare annual losses using RM value, GDP impact, or multiples of the historical RM600M benchmark.",
+    "anchor": "start",
+    "font": "DM Sans",
+    "subtitleFont": "DM Sans",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "color": "#0d1b2a",
+    "subtitleColor": "#6a8090"
+  },
+
+  "width": "container",
+  "height": 280,
+
+  "config": {
+    "view": { "stroke": "transparent" },
+    "axis": {
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  },
+
+  "params": [
+    {
+      "name": "ch14_view",
+      "value": "multiple",
+      "bind": {
+        "input": "select",
+        "options": ["multiple", "damage", "gdp"],
+        "labels": ["× Historical Average", "RM Million", "% GDP"],
+        "name": "Metric: "
+      }
+    }
+  ],
+
+  "data": {
+    "values": [
+      { "Year": "2021", "Total": 6100, "GDP": 0.40 },
+      { "Year": "2022", "Total": 623, "GDP": 0.04 },
+      { "Year": "2023", "Total": 755, "GDP": 0.04 },
+      { "Year": "2024", "Total": 933, "GDP": 0.05 }
+    ]
+  },
+
+  "transform": [
+    {
+      "calculate": "datum.Total / 600",
+      "as": "Multiple"
+    },
+
+    {
+      "calculate": "ch14_view == 'multiple' ? datum.Multiple : ch14_view == 'damage' ? datum.Total : datum.GDP",
+      "as": "Value"
+    },
+
+    {
+      "calculate": "datum.Value + (ch14_view == 'gdp' ? 0.03 : ch14_view == 'multiple' ? 0.5 : 150)",
+      "as": "LabelX"
+    },
+
+    {
+      "calculate": "datum.Year == '2021' ? '#e74c3c' : '#2e86c1'",
+      "as": "BarColor"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 5
+      },
+
+      "encoding": {
+        "y": {
+          "field": "Year",
+          "type": "ordinal",
+          "sort": ["2021", "2024", "2023", "2022"],
+          "axis": { "title": null, "labelFontSize": 12 }
+        },
+
+        "x": {
+          "field": "Value",
+          "type": "quantitative",
+          "scale": {
+            "domainMax": {
+              "signal": "ch14_view=='gdp' ? 0.5 : ch14_view=='multiple' ? 12 : 7000"
+            }
+          },
+          "axis": {
+            "title": {
+              "signal": "ch14_view=='multiple' ? 'Times Historical Average' : ch14_view=='damage' ? 'Flood Damage (RM million)' : '% of GDP'"
+            }
+          }
+        },
+
+        "color": { "field": "BarColor", "scale": null }
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "font": "DM Sans",
+        "fontWeight": 700,
+        "fontSize": 11
+      },
+
+      "encoding": {
+        "y": {
+          "field": "Year",
+          "type": "ordinal",
+          "sort": ["2021", "2024", "2023", "2022"]
+        },
+
+        "x": {
+          "field": "LabelX",
+          "type": "quantitative"
+        },
+
+        "text": {
+          "condition": [
+            {
+              "test": "ch14_view == 'multiple'",
+              "field": "Multiple",
+              "type": "quantitative",
+              "format": ".1f"
+            },
+            {
+              "test": "ch14_view == 'damage'",
+              "field": "Total",
+              "type": "quantitative",
+              "format": ",.0f"
+            }
+          ],
+          "field": "GDP",
+          "type": "quantitative",
+          "format": ".0%"
+        },
+
+        "align": { "value": "left" },
+        "baseline": { "value": "middle" },
+
+        "color": {
+          "condition": {
+            "test": "ch14_view == 'gdp'",
+            "value": "#000000"
+          },
+          "value": "#0d1b2a"
+        }
+      }
+    }
+  ]
+}

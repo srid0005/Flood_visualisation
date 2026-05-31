@@ -1,0 +1,344 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Deaths vs. Flood Events Per Year \u2014 Are They Connected?",
+    "subtitle": "Left = deaths (red). Right = events \u00d710 (blue). Drag sliders to filter years. Hover for details.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "font": "Inter, sans-serif",
+    "subtitleFont": "Inter, sans-serif",
+    "color": "#0a1628",
+    "subtitleColor": "#526070"
+  },
+  "width": "container",
+  "height": 520,
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "axis": {
+      "grid": true,
+      "gridColor": "#f0f4f8",
+      "gridWidth": 1,
+      "domain": false,
+      "ticks": false,
+      "labelFont": "Inter, sans-serif",
+      "titleFont": "Inter, sans-serif",
+      "labelFontSize": 10,
+      "titleFontSize": 11
+    },
+    "legend": {
+      "labelFont": "Inter, sans-serif",
+      "titleFont": "Inter, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 11
+    }
+  },
+  "data": {
+    "url": "data/deaths_events_diverging.csv"
+  },
+  "params": [
+    {
+      "name": "yr_from",
+      "value": 1965,
+      "bind": {
+        "input": "range",
+        "min": 1965,
+        "max": 2020,
+        "step": 1,
+        "name": "From: "
+      }
+    },
+    {
+      "name": "yr_to",
+      "value": 2023,
+      "bind": {
+        "input": "range",
+        "min": 1966,
+        "max": 2023,
+        "step": 1,
+        "name": "To: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.Year >= yr_from && datum.Year <= yr_to"
+    },
+    {
+      "calculate": "datum.Events * 10",
+      "as": "Events_Scaled"
+    },
+    {
+      "fold": [
+        "Deaths_Neg",
+        "Events_Scaled"
+      ],
+      "as": [
+        "Metric",
+        "Value"
+      ]
+    },
+    {
+      "calculate": "datum.Metric == 'Deaths_Neg' ? 'Deaths' : 'Events \u00d710'",
+      "as": "Legend_Label"
+    }
+  ],
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.Metric == 'Deaths_Neg'"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "cornerRadiusTopLeft": 2,
+        "cornerRadiusBottomLeft": 2
+      },
+      "encoding": {
+        "y": {
+          "field": "Year",
+          "type": "ordinal",
+          "axis": {
+            "title": "",
+            "labelFontSize": 10
+          }
+        },
+        "x": {
+          "field": "Value",
+          "type": "quantitative",
+          "axis": {
+            "title": "\u2190 Deaths (actual)     Events \u00d710 \u2192",
+            "tickCount": 8,
+            "labelExpr": "abs(datum.value)"
+          }
+        },
+        "color": {
+          "field": "Legend_Label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Deaths",
+              "Events \u00d710"
+            ],
+            "range": [
+              "#c0392b",
+              "#1561a0"
+            ]
+          },
+          "title": "Legend",
+          "legend": {
+            "orient": "top-right",
+            "direction": "horizontal",
+            "symbolSize": 120,
+            "labelFontSize": 11,
+            "titleFontSize": 0,
+            "offset": 4
+          }
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.Deaths > 20",
+            "value": 1
+          },
+          "value": 0.7
+        },
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "Deaths",
+            "type": "quantitative",
+            "title": "Deaths"
+          },
+          {
+            "field": "Events",
+            "type": "quantitative",
+            "title": "Events"
+          },
+          {
+            "field": "Total_Affected",
+            "type": "quantitative",
+            "title": "Displaced",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Metric == 'Events_Scaled'"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "cornerRadiusTopRight": 2,
+        "cornerRadiusBottomRight": 2
+      },
+      "encoding": {
+        "y": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "x": {
+          "field": "Value",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Legend_Label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Deaths",
+              "Events \u00d710"
+            ],
+            "range": [
+              "#c0392b",
+              "#1561a0"
+            ]
+          },
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum.Events >= 4",
+            "value": 1
+          },
+          "value": 0.6
+        },
+        "tooltip": [
+          {
+            "field": "Year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "Events",
+            "type": "quantitative",
+            "title": "Events"
+          },
+          {
+            "field": "Deaths",
+            "type": "quantitative",
+            "title": "Deaths"
+          },
+          {
+            "field": "Total_Affected",
+            "type": "quantitative",
+            "title": "Displaced",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#0a1628",
+        "strokeWidth": 1.5,
+        "opacity": 0.25
+      },
+      "encoding": {
+        "x": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Metric == 'Deaths_Neg' && datum.Deaths > 20"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -5,
+        "fontSize": 9.5,
+        "fontWeight": 700,
+        "font": "Inter, sans-serif",
+        "color": "#8b1f1f"
+      },
+      "encoding": {
+        "y": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "x": {
+          "field": "Value",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Deaths",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Metric == 'Events_Scaled' && datum.Events >= 5"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "fontSize": 9.5,
+        "fontWeight": 700,
+        "font": "Inter, sans-serif",
+        "color": "#0d3d6e"
+      },
+      "encoding": {
+        "y": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "x": {
+          "field": "Value",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Events",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Metric == 'Deaths_Neg' && datum.Year == 2021"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "dy": 0,
+        "fontSize": 9,
+        "fontWeight": 700,
+        "font": "Inter, sans-serif",
+        "color": "#8b1f1f",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "y": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "x": {
+          "datum": 0
+        },
+        "text": {
+          "value": "\u25c4 Worst year on record"
+        }
+      }
+    }
+  ]
+}

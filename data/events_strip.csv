@@ -1,0 +1,75 @@
+Year,Month,Month_Num,Season,Flood_Type,Affected,Deaths,Y_Jitter,Season_Y
+1996,Feb,2,NE Monsoon,Riverine flood,418,0,3.098,3
+2019,Oct,10,Transition,Flood (General),2412,0,0.668,1
+1999,Jan,1,NE Monsoon,Riverine flood,2000,1,2.843,3
+2021,May,5,SW Monsoon,Flood (General),5782,0,1.806,2
+2021,Aug,8,SW Monsoon,Flash flood,4828,7,2.166,2
+2021,Sep,9,Transition,Flood (General),255,2,1.124,1
+2018,Feb,2,NE Monsoon,Flash flood,4900,0,3.275,3
+2017,Nov,11,NE Monsoon,Riverine flood,13000,2,2.711,3
+2017,Jan,1,NE Monsoon,Flood (General),5481,0,2.945,3
+2022,Nov,11,NE Monsoon,Flood (General),3107,0,2.671,3
+2023,Dec,12,NE Monsoon,Flood (General),25676,2,2.803,3
+2014,Dec,12,NE Monsoon,Riverine flood,230000,17,3.004,3
+2013,Dec,12,NE Monsoon,Riverine flood,75000,4,2.669,3
+1965,Dec,12,NE Monsoon,Flood (General),300000,6,2.789,3
+1967,Jan,1,NE Monsoon,Flood (General),140000,50,3.105,3
+1978,Dec,12,NE Monsoon,Flood (General),3000,0,3.031,3
+2003,Nov,11,NE Monsoon,Flash flood,3000,5,2.804,3
+2006,Feb,2,NE Monsoon,Riverine flood,4906,0,3.062,3
+2008,Dec,12,NE Monsoon,Flash flood,6000,0,3.217,3
+1970,Dec,12,NE Monsoon,Flood (General),243000,61,2.655,3
+2001,Aug,8,SW Monsoon,Flash flood,10000,0,2.214,2
+1993,Dec,12,NE Monsoon,Riverine flood,25000,30,3.139,3
+2001,Oct,10,Transition,Flood (General),5000,0,0.888,1
+2001,Dec,12,NE Monsoon,Riverine flood,18000,11,2.759,3
+2003,Dec,12,NE Monsoon,Riverine flood,2000,0,3.32,3
+2004,Mar,3,Transition,Riverine flood,9138,0,0.886,1
+2003,Oct,10,Transition,Riverine flood,13800,3,0.715,1
+2005,Jul,7,SW Monsoon,Flash flood,600,4,1.718,2
+2005,Nov,11,NE Monsoon,Flash flood,30000,9,3.243,3
+2007,Jan,1,NE Monsoon,Riverine flood,137533,17,3.073,3
+2008,Dec,12,NE Monsoon,Riverine flood,2000,0,3.215,3
+2015,Jan,1,NE Monsoon,Riverine flood,3000,1,3.161,3
+2016,Feb,2,NE Monsoon,Flood (General),6000,0,3.025,3
+2018,Jan,1,NE Monsoon,Flood (General),12000,2,3.331,3
+2023,Nov,11,NE Monsoon,Flood (General),881,0,2.915,3
+2019,Nov,11,NE Monsoon,Flood (General),15000,2,3.036,3
+2019,Dec,12,NE Monsoon,Flood (General),4065,0,3.231,3
+2020,Apr,4,Transition,Flood (General),2000,0,1.083,1
+2020,Oct,10,Transition,Flood (General),400,0,1.253,1
+2020,Dec,12,NE Monsoon,Riverine flood,9273,0,3.054,3
+2021,Jan,1,NE Monsoon,Flood (General),6000,0,3.143,3
+2022,Jul,7,SW Monsoon,Flood (General),228,3,1.682,2
+2022,Dec,12,NE Monsoon,Flood (General),60000,8,2.81,3
+2023,Jan,1,NE Monsoon,Flood (General),11000,0,2.853,3
+1986,Nov,11,NE Monsoon,Flood (General),25000,11,2.706,3
+1987,Dec,12,NE Monsoon,Flood (General),2576,3,2.813,3
+1988,Nov,11,NE Monsoon,Riverine flood,60000,27,2.721,3
+1983,Dec,12,NE Monsoon,Flood (General),15000,10,2.845,3
+2001,Oct,10,Transition,Flood (General),200,0,1.095,1
+2004,Jan,1,NE Monsoon,Riverine flood,6900,3,2.905,3
+2004,Dec,12,NE Monsoon,Riverine flood,15000,13,2.909,3
+2006,Apr,4,Transition,Riverine flood,500,0,0.797,1
+2009,Nov,11,NE Monsoon,Riverine flood,9082,0,2.837,3
+2016,Dec,12,NE Monsoon,Flood (General),25000,0,3.306,3
+2021,Jan,1,NE Monsoon,Flood (General),23776,8,3.104,3
+2021,Oct,10,Transition,Flash flood,1000,0,1.076,1
+2022,Feb,2,NE Monsoon,Flood (General),26000,6,2.77,3
+2022,Mar,3,Transition,Flood (General),1290,0,1.16,1
+2023,Feb,2,NE Monsoon,Flood (General),46630,4,2.764,3
+2020,Jun,6,SW Monsoon,Flood (General),1210,0,1.916,2
+2020,Jun,6,SW Monsoon,Flood (General),9000,0,2.343,2
+2021,Jan,1,NE Monsoon,Flood (General),3000,6,3.098,3
+2021,Dec,12,NE Monsoon,Flash flood,120000,56,3.04,3
+1998,Nov,11,NE Monsoon,Flood (General),2500,0,3.129,3
+2000,Nov,11,NE Monsoon,Flash flood,8000,12,3.24,3
+2006,Jan,1,NE Monsoon,Riverine flood,1112,0,3.193,3
+2006,Dec,12,NE Monsoon,Flash flood,100000,6,2.81,3
+2007,Dec,12,NE Monsoon,Riverine flood,29000,29,2.672,3
+2009,Nov,11,NE Monsoon,Riverine flood,1793,0,2.871,3
+2011,Jan,1,NE Monsoon,Riverine flood,20000,2,2.837,3
+2016,Jul,7,SW Monsoon,Flood (General),441,0,1.798,2
+2016,Nov,11,NE Monsoon,Flood (General),400,0,3.31,3
+2017,Nov,11,NE Monsoon,Flood (General),3500,7,3.263,3
+2019,Jun,6,SW Monsoon,Flood (General),1000,0,1.87,2

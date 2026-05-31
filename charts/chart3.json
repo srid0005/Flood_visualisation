@@ -1,0 +1,148 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": {
+    "text": "Flood Burden Change by State (2000–2014 → 2015–2024)",
+    "subtitle": "Ranked by change in people displaced. Red = worsening, green = improvement.",
+    "anchor": "start",
+    "font": "DM Sans",
+    "fontSize": 14,
+    "subtitleFont": "DM Sans",
+    "subtitleFontSize": 11,
+    "color": "#0d1b2a",
+    "subtitleColor": "#6a8090"
+  },
+
+  "width": "container",
+  "height": 520,
+
+  "config": {
+    "view": { "stroke": "transparent" },
+    "axis": {
+      "grid": false,
+      "domain": false,
+      "ticks": false,
+      "labelFont": "DM Sans",
+      "titleFont": "DM Sans",
+      "labelFontSize": 12
+    },
+    "legend": { "disable": true }
+  },
+
+  "data": {
+    "values": [
+      {"State":"Pahang","Era":"2000–2014","Total_Affected":614239},
+      {"State":"Pahang","Era":"2015–2024","Total_Affected":290049},
+
+      {"State":"Johor","Era":"2000–2014","Total_Affected":601783},
+      {"State":"Johor","Era":"2015–2024","Total_Affected":273031},
+
+      {"State":"Sabah","Era":"2000–2014","Total_Affected":100000},
+      {"State":"Sabah","Era":"2015–2024","Total_Affected":325364},
+
+      {"State":"Perlis","Era":"2000–2014","Total_Affected":5000},
+      {"State":"Perlis","Era":"2015–2024","Total_Affected":262412},
+
+      {"State":"Kelantan","Era":"2000–2014","Total_Affected":400000},
+      {"State":"Kelantan","Era":"2015–2024","Total_Affected":250813},
+
+      {"State":"Terengganu","Era":"2000–2014","Total_Affected":380000},
+      {"State":"Terengganu","Era":"2015–2024","Total_Affected":268106},
+
+      {"State":"Perak","Era":"2000–2014","Total_Affected":253000},
+      {"State":"Perak","Era":"2015–2024","Total_Affected":240869},
+
+      {"State":"Selangor","Era":"2000–2014","Total_Affected":220000},
+      {"State":"Selangor","Era":"2015–2024","Total_Affected":190776},
+
+      {"State":"Negeri Sembilan","Era":"2000–2014","Total_Affected":100000},
+      {"State":"Negeri Sembilan","Era":"2015–2024","Total_Affected":124702},
+
+      {"State":"Melaka","Era":"2000–2014","Total_Affected":130000},
+      {"State":"Melaka","Era":"2015–2024","Total_Affected":115072}
+    ]
+  },
+
+  "transform": [
+    {
+      "pivot": "Era",
+      "value": "Total_Affected",
+      "groupby": ["State"]
+    },
+    {
+      "calculate": "datum['2015–2024'] - datum['2000–2014']",
+      "as": "Change"
+    },
+    {
+      "calculate": "datum.Change > 0 ? 'Worsened' : 'Improved'",
+      "as": "Status"
+    },
+    {
+      "window": [
+        { "op": "rank", "as": "rank" }
+      ],
+      "sort": [{ "field": "Change", "order": "descending" }]
+    }
+  ],
+
+  "encoding": {
+    "y": {
+      "field": "State",
+      "type": "ordinal",
+      "sort": { "field": "Change", "order": "descending" },
+      "title": null
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusEnd": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "Change",
+          "type": "quantitative",
+          "axis": {
+            "title": "Change in People Displaced",
+            "format": "~s"
+          }
+        },
+        "color": {
+          "condition": [
+            {
+              "test": "datum.Change > 0",
+              "value": "#e74c3c"
+            }
+          ],
+          "value": "#2ecc71"
+        }
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "font": "DM Sans",
+        "fontSize": 11,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": { "field": "Change", "type": "quantitative" },
+        "text": { "field": "Change", "format": "," },
+        "color": {
+          "condition": [
+            {
+              "test": "datum.Change > 0",
+              "value": "#c0392b"
+            }
+          ],
+          "value": "#1e8449"
+        }
+      }
+    }
+  ]
+}

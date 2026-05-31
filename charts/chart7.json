@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Flood Event Frequency by State",
+    "subtitle": "Darker blue = more flood events since 1965. 5 discrete colour levels. Hover for details.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "font": "Inter, sans-serif",
+    "subtitleFont": "Inter, sans-serif",
+    "color": "#0a1628",
+    "subtitleColor": "#526070"
+  },
+  "width": "container",
+  "height": 420,
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "legend": {
+      "labelFont": "Inter, sans-serif",
+      "titleFont": "Inter, sans-serif",
+      "labelFontSize": 11
+    }
+  },
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+    "url": "data/malaysia-states-simplified.json",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.shapeName",
+      "from": {
+        "data": {
+          "url": "data/state_freq_map.csv"
+        },
+        "key": "State",
+        "fields": [
+          "Event_Count",
+          "Total_Affected",
+          "Avg_Affected_per_Event"
+        ]
+      }
+    },
+    {
+      "calculate": "datum.Event_Count == null ? 0 : +datum.Event_Count",
+      "as": "Events"
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 1.5
+  },
+  "encoding": {
+    "color": {
+      "field": "Events",
+      "type": "quantitative",
+      "scale": {
+        "type": "quantize",
+        "domain": [
+          0,
+          20
+        ],
+        "scheme": "blues"
+      },
+      "title": "Flood Events",
+      "legend": {
+        "orient": "bottom-right",
+        "direction": "vertical",
+        "gradientLength": 120,
+        "format": "d"
+      }
+    },
+    "tooltip": [
+      {
+        "field": "properties.shapeName",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "Events",
+        "type": "quantitative",
+        "title": "Events"
+      },
+      {
+        "field": "Total_Affected",
+        "type": "quantitative",
+        "title": "Total Displaced",
+        "format": ","
+      }
+    ]
+  }
+}

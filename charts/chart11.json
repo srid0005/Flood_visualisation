@@ -1,0 +1,153 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Displacement vs. Deaths by Decade — The Decoupling Story",
+    "subtitle": "Each panel = one decade. X = people displaced. Y = deaths. Drag slider to highlight deadly years.",
+    "anchor": "start", "fontSize": 14, "subtitleFontSize": 11,
+    "font": "Inter, sans-serif", "subtitleFont": "Inter, sans-serif",
+    "color": "#0a1628", "subtitleColor": "#526070"
+  },
+  "config": {
+    "view": {"stroke": "#e8edf3", "strokeWidth": 1},
+    "axis": {
+      "grid": true, "gridColor": "#f0f4f8", "gridWidth": 1,
+      "domain": true, "domainColor": "#cfd9e6", "domainWidth": 1.2,
+      "ticks": true, "tickColor": "#cfd9e6",
+      "labelFont": "Inter, sans-serif", "titleFont": "Inter, sans-serif",
+      "labelFontSize": 9, "titleFontSize": 10
+    },
+    "header": {
+      "labelFont": "Inter, sans-serif", "labelFontSize": 12,
+      "labelFontWeight": 700, "labelColor": "#0a1628",
+      "titleFont": "Inter, sans-serif"
+    },
+    "legend": {
+      "labelFont": "Inter, sans-serif", "titleFont": "Inter, sans-serif",
+      "labelFontSize": 11
+    },
+    "facet": {"spacing": 12}
+  },
+  "data": {
+    "values": [
+      {"Year":1965,"Total_Deaths":6, "Total_Affected":300000,"Decade":"1960s"},
+      {"Year":1967,"Total_Deaths":50,"Total_Affected":140000,"Decade":"1960s"},
+      {"Year":1970,"Total_Deaths":61,"Total_Affected":243000,"Decade":"1970s"},
+      {"Year":1978,"Total_Deaths":0, "Total_Affected":3000,  "Decade":"1970s"},
+      {"Year":1983,"Total_Deaths":10,"Total_Affected":15000, "Decade":"1980s"},
+      {"Year":1986,"Total_Deaths":11,"Total_Affected":25000, "Decade":"1980s"},
+      {"Year":1987,"Total_Deaths":3, "Total_Affected":2576,  "Decade":"1980s"},
+      {"Year":1988,"Total_Deaths":27,"Total_Affected":60000, "Decade":"1980s"},
+      {"Year":1993,"Total_Deaths":30,"Total_Affected":25000, "Decade":"1990s"},
+      {"Year":1996,"Total_Deaths":0, "Total_Affected":418,   "Decade":"1990s"},
+      {"Year":1998,"Total_Deaths":0, "Total_Affected":2500,  "Decade":"1990s"},
+      {"Year":1999,"Total_Deaths":1, "Total_Affected":2000,  "Decade":"1990s"},
+      {"Year":2000,"Total_Deaths":12,"Total_Affected":8000,  "Decade":"2000s"},
+      {"Year":2001,"Total_Deaths":11,"Total_Affected":33200, "Decade":"2000s"},
+      {"Year":2003,"Total_Deaths":8, "Total_Affected":18800, "Decade":"2000s"},
+      {"Year":2004,"Total_Deaths":16,"Total_Affected":31038, "Decade":"2000s"},
+      {"Year":2005,"Total_Deaths":13,"Total_Affected":30600, "Decade":"2000s"},
+      {"Year":2006,"Total_Deaths":6, "Total_Affected":106518,"Decade":"2000s"},
+      {"Year":2007,"Total_Deaths":46,"Total_Affected":166533,"Decade":"2000s"},
+      {"Year":2008,"Total_Deaths":0, "Total_Affected":8000,  "Decade":"2000s"},
+      {"Year":2009,"Total_Deaths":0, "Total_Affected":10875, "Decade":"2000s"},
+      {"Year":2011,"Total_Deaths":2, "Total_Affected":20000, "Decade":"2010s"},
+      {"Year":2013,"Total_Deaths":4, "Total_Affected":75000, "Decade":"2010s"},
+      {"Year":2014,"Total_Deaths":17,"Total_Affected":230000,"Decade":"2010s"},
+      {"Year":2015,"Total_Deaths":1, "Total_Affected":3000,  "Decade":"2010s"},
+      {"Year":2016,"Total_Deaths":0, "Total_Affected":31841, "Decade":"2010s"},
+      {"Year":2017,"Total_Deaths":9, "Total_Affected":21981, "Decade":"2010s"},
+      {"Year":2018,"Total_Deaths":2, "Total_Affected":16900, "Decade":"2010s"},
+      {"Year":2019,"Total_Deaths":2, "Total_Affected":22477, "Decade":"2010s"},
+      {"Year":2020,"Total_Deaths":0, "Total_Affected":21883, "Decade":"2020s"},
+      {"Year":2021,"Total_Deaths":79,"Total_Affected":164641,"Decade":"2020s"},
+      {"Year":2022,"Total_Deaths":17,"Total_Affected":90625, "Decade":"2020s"},
+      {"Year":2023,"Total_Deaths":6, "Total_Affected":84187, "Decade":"2020s"},
+      {"Year":2024,"Total_Deaths":5, "Total_Affected":137410,"Decade":"2020s"}
+    ]
+  },
+  "params": [
+    {
+      "name": "ch11_threshold",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0, "max": 60, "step": 5,
+        "name": "Highlight years with deaths ≥ "
+      }
+    }
+  ],
+  "facet": {
+    "field": "Decade", "type": "ordinal",
+    "sort": ["1960s","1970s","1980s","1990s","2000s","2010s","2020s"],
+    "header": {"title": null, "labelOrient": "top"}
+  },
+  "columns": 4,
+  "spec": {
+    "width": 155,
+    "height": 155,
+    "layer": [
+      {
+        "mark": {
+          "type": "circle",
+          "stroke": "#0a1628",
+          "strokeWidth": 1.1
+        },
+        "encoding": {
+          "x": {
+            "field": "Total_Affected", "type": "quantitative",
+            "axis": {"title": "Displaced", "format": "~s", "tickCount": 3},
+            "scale": {"zero": true}
+          },
+          "y": {
+            "field": "Total_Deaths", "type": "quantitative",
+            "axis": {"title": "Deaths", "tickCount": 4},
+            "scale": {"zero": true}
+          },
+          "size": {"value": 120},
+          "color": {
+            "condition": {
+              "test": "datum.Total_Deaths >= ch11_threshold && ch11_threshold > 0",
+              "value": "#c0392b"
+            },
+            "field": "Decade", "type": "nominal",
+            "scale": {
+              "domain": ["1960s","1970s","1980s","1990s","2000s","2010s","2020s"],
+              "range": ["#4e79a7","#f28e2b","#e15759","#76b7b2","#59a14f","#edc948","#b07aa1"]
+            },
+            "legend": null
+          },
+          "opacity": {
+            "condition": {
+              "test": "ch11_threshold == 0 || datum.Total_Deaths >= ch11_threshold",
+              "value": 0.88
+            },
+            "value": 0.12
+          },
+          "tooltip": [
+            {"field": "Year", "type": "quantitative", "title": "Year", "format": "d"},
+            {"field": "Total_Deaths", "type": "quantitative", "title": "Deaths"},
+            {"field": "Total_Affected", "type": "quantitative", "title": "Displaced", "format": ","}
+          ]
+        }
+      },
+      {
+        "transform": [
+          {"filter": "datum.Total_Deaths >= ch11_threshold && ch11_threshold > 0"}
+        ],
+        "mark": {
+          "type": "text",
+          "fontSize": 8.5,
+          "fontWeight": 700,
+          "font": "Inter, sans-serif",
+          "dy": -10,
+          "color": "#c0392b"
+        },
+        "encoding": {
+          "x": {"field": "Total_Affected", "type": "quantitative"},
+          "y": {"field": "Total_Deaths", "type": "quantitative"},
+          "text": {"field": "Year", "type": "quantitative", "format": "d"}
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Flood Risk Profile: Frequency vs. Severity by State",
+    "subtitle": "X = how often a state floods. Y = avg people displaced per event. Bubble size = total displaced. Filter by region.",
+    "anchor": "start",
+    "fontSize": 14,
+    "subtitleFontSize": 11,
+    "font": "Inter, sans-serif",
+    "subtitleFont": "Inter, sans-serif",
+    "color": "#0a1628",
+    "subtitleColor": "#526070"
+  },
+  "width": "container",
+  "height": 560,
+  "config": {
+    "view": { "stroke": "transparent" },
+    "axis": {
+      "grid": false,
+      "domain": true,
+      "domainColor": "#cfd9e6",
+      "ticks": true,
+      "tickColor": "#cfd9e6",
+      "labelFont": "Inter, sans-serif",
+      "titleFont": "Inter, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelFont": "Inter, sans-serif",
+      "titleFont": "Inter, sans-serif",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  },
+  "data": {
+    "values": [
+      { "State": "Johor",           "Event_Count": 19, "Avg_Affected": 46043, "Total_Affected": 874814, "Region": "East Coast", "LabelY": 40000, "LabelX": 20   },
+      { "State": "Pahang",          "Event_Count": 19, "Avg_Affected": 47594, "Total_Affected": 904288, "Region": "East Coast", "LabelY": 53000, "LabelX": 19   },
+      { "State": "Kelantan",        "Event_Count": 18, "Avg_Affected": 36156, "Total_Affected": 650813, "Region": "East Coast", "LabelY": 38000, "LabelX": 16.2  },
+      { "State": "Terengganu",      "Event_Count": 18, "Avg_Affected": 36006, "Total_Affected": 648106, "Region": "East Coast", "LabelY": 29000, "LabelX": 18   },
+      { "State": "Sabah",           "Event_Count": 8,  "Avg_Affected": 53170, "Total_Affected": 425364, "Region": "Borneo",     "LabelY": 58000, "LabelX": 8    },
+      { "State": "Selangor",        "Event_Count": 8,  "Avg_Affected": 51347, "Total_Affected": 410776, "Region": "West Coast", "LabelY": 46000, "LabelX": 8    },
+      { "State": "Perak",           "Event_Count": 11, "Avg_Affected": 44897, "Total_Affected": 493869, "Region": "West Coast", "LabelY": 50000, "LabelX": 11   },
+      { "State": "Melaka",          "Event_Count": 9,  "Avg_Affected": 27230, "Total_Affected": 245072, "Region": "West Coast", "LabelY": 31000, "LabelX": 9    },
+      { "State": "Kuala Lumpur",    "Event_Count": 7,  "Avg_Affected": 30700, "Total_Affected": 214902, "Region": "West Coast", "LabelY": 34000, "LabelX": 7    },
+      { "State": "Negeri Sembilan", "Event_Count": 5,  "Avg_Affected": 44940, "Total_Affected": 224702, "Region": "West Coast", "LabelY": 49000, "LabelX": 5    },
+      { "State": "Perlis",          "Event_Count": 3,  "Avg_Affected": 87471, "Total_Affected": 262412, "Region": "West Coast", "LabelY": 90000, "LabelX": 3    },
+      { "State": "Kedah",           "Event_Count": 6,  "Avg_Affected": 8751,  "Total_Affected": 52505,  "Region": "West Coast", "LabelY": 11000, "LabelX": 6    },
+      { "State": "Sarawak",         "Event_Count": 7,  "Avg_Affected": 4577,  "Total_Affected": 32037,  "Region": "Borneo",     "LabelY": 5500,  "LabelX": 7    },
+      { "State": "Pulau Pinang",    "Event_Count": 3,  "Avg_Affected": 3006,  "Total_Affected": 9019,   "Region": "West Coast", "LabelY": 5200,  "LabelX": 3    }
+    ]
+  },
+  "params": [
+    {
+      "name": "rg",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "East Coast", "West Coast", "Borneo"],
+        "name": "Highlight region: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "rule", "strokeDash": [4, 4], "strokeWidth": 1, "color": "#d4dce8" },
+      "encoding": { "y": { "datum": 20000 } }
+    },
+    {
+      "mark": { "type": "rule", "strokeDash": [4, 4], "strokeWidth": 1, "color": "#d4dce8" },
+      "encoding": { "y": { "datum": 40000 } }
+    },
+    {
+      "mark": { "type": "rule", "strokeDash": [4, 4], "strokeWidth": 1, "color": "#d4dce8" },
+      "encoding": { "y": { "datum": 60000 } }
+    },
+    {
+      "mark": { "type": "rule", "strokeDash": [4, 4], "strokeWidth": 1, "color": "#d4dce8" },
+      "encoding": { "y": { "datum": 80000 } }
+    },
+    {
+      "mark": { "type": "rule", "strokeDash": [6, 4], "strokeWidth": 1.4, "color": "#8090a8", "opacity": 0.5 },
+      "encoding": { "x": { "datum": 10 } }
+    },
+    {
+      "mark": { "type": "rule", "strokeDash": [6, 4], "strokeWidth": 1.4, "color": "#8090a8", "opacity": 0.5 },
+      "encoding": { "y": { "datum": 38000 } }
+    },
+    {
+      "mark": { "type": "text", "fontSize": 8.5, "fontStyle": "italic", "font": "Inter, sans-serif", "opacity": 0.35, "align": "left" },
+      "encoding": {
+        "x": { "datum": 0.1 }, "y": { "datum": 93000 },
+        "text": { "value": "Rare but Catastrophic" }, "color": { "value": "#0a1628" }
+      }
+    },
+    {
+      "mark": { "type": "text", "fontSize": 8.5, "fontStyle": "italic", "font": "Inter, sans-serif", "opacity": 0.35, "align": "right" },
+      "encoding": {
+        "x": { "datum": 20.9 }, "y": { "datum": 93000 },
+        "text": { "value": "High Risk" }, "color": { "value": "#0a1628" }
+      }
+    },
+    {
+      "mark": { "type": "text", "fontSize": 8.5, "fontStyle": "italic", "font": "Inter, sans-serif", "opacity": 0.35, "align": "left" },
+      "encoding": {
+        "x": { "datum": 0.1 }, "y": { "datum": 1000 },
+        "text": { "value": "Low Risk" }, "color": { "value": "#0a1628" }
+      }
+    },
+    {
+      "mark": { "type": "text", "fontSize": 8.5, "fontStyle": "italic", "font": "Inter, sans-serif", "opacity": 0.35, "align": "right" },
+      "encoding": {
+        "x": { "datum": 20.9 }, "y": { "datum": 1000 },
+        "text": { "value": "Frequent but Mild" }, "color": { "value": "#0a1628" }
+      }
+    },
+    {
+      "mark": { "type": "circle", "stroke": "#0a1628", "strokeWidth": 1.2 },
+      "encoding": {
+        "x": {
+          "field": "Event_Count", "type": "quantitative",
+          "scale": { "domain": [0, 21] },
+          "axis": { "title": "Number of Flood Events (Frequency)", "tickCount": 7 }
+        },
+        "y": {
+          "field": "Avg_Affected", "type": "quantitative",
+          "scale": { "domain": [0, 96000] },
+          "axis": { "title": "Avg People Displaced per Event (Severity)", "format": "~s", "tickCount": 6 }
+        },
+        "size": {
+          "field": "Total_Affected", "type": "quantitative",
+          "scale": { "range": [80, 2800] },
+          "title": "Total Displaced",
+          "legend": { "orient": "bottom", "direction": "horizontal", "values": [50000, 200000, 500000, 900000] }
+        },
+        "color": {
+          "field": "Region", "type": "nominal",
+          "scale": {
+            "domain": ["East Coast", "West Coast", "Borneo"],
+            "range": ["#e05535", "#2e86c1", "#27a060"]
+          },
+          "title": "Region",
+          "legend": { "orient": "bottom", "direction": "horizontal" }
+        },
+        "opacity": {
+          "condition": { "test": "rg == 'All' || datum.Region == rg", "value": 0.85 },
+          "value": 0.06
+        },
+        "tooltip": [
+          { "field": "State",          "type": "nominal",      "title": "State" },
+          { "field": "Region",         "type": "nominal",      "title": "Region" },
+          { "field": "Event_Count",    "type": "quantitative", "title": "Events" },
+          { "field": "Avg_Affected",   "type": "quantitative", "title": "Avg Displaced/Event", "format": "," },
+          { "field": "Total_Affected", "type": "quantitative", "title": "Total Displaced",      "format": "," }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "font": "Inter, sans-serif",
+        "fontSize": 10,
+        "fontWeight": 700,
+        "align": "center",
+        "baseline": "bottom"
+      },
+      "encoding": {
+        "x": { "field": "LabelX", "type": "quantitative", "scale": { "domain": [0, 21] } },
+        "y": { "field": "LabelY", "type": "quantitative", "scale": { "domain": [0, 96000] } },
+        "text": { "field": "State", "type": "nominal" },
+        "color": { "value": "#0a1628" },
+        "opacity": {
+          "condition": { "test": "rg == 'All' || datum.Region == rg", "value": 1 },
+          "value": 0.04
+        }
+      }
+    }
+  ]
+}
